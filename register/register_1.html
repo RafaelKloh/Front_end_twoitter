@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/global_style.css">
+</head>
+<body>
+    <img src="../public/img/Twoitter_logo_no_bg.png" alt="Twoitter_logo">
+    <form id = "form_register_1" method="POST">
+        <label>Register your account!</label>
+        <br>
+        <label>Name</label>
+        <br>
+        <input type="text" name="name" id="name">
+        <br>
+        <label>Email</label>
+        <br>
+        <input type="email" name="email" id="email">
+        <br>
+        <label>Password</label>
+        <br>
+        <input type="password" name="password" id="password">
+        <br>
+        <label>Confirm Password</label>
+        <br>
+        <input type="password" name="confirm_password" id="confirm_password">
+        <br>
+        <label>Sex</label>
+        <select name="sex" id="sex">
+            <option value="masc">Masc</option>
+            <option value="fem">Fem</option>
+        </select>
+        <br>
+        <label>Birthday</label>
+        <br>
+        <input type="date" name="birthday" id="birthday">
+        <br>
+        <label>Do you need accept our terms of use</label>
+        <br>
+        <input type="checkbox" name="terms_of_use" id="terms_of_use">
+        <a href="./terms _of_use.html">Terms of use</a>
+        <input type="submit" value="Register">
+    </form>
+</body>
+<script type="module" src="./register_1.js"></script>
+</html>

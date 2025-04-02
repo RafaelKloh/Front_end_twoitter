@@ -1,4 +1,4 @@
-import { create_modal } from "../public/modals/modal_login.js";
+import { create_modal } from "../public/modals/global_modal.js";
     
 
 const email = document.getElementById("email");
@@ -27,14 +27,11 @@ async function login() {
     .then(response => response.json())
     
     .then(data => {
-        console.log(data)
         if(data["error"]){
            create_modal(data["message"])
         }
         if (data.success) {
             const jwt = localStorage.setItem("jwt_login", data.jwt)
-            console.log(jwt)
-            console.log(data)
             window.location.href = "../home/home.html";
         } else {
             console.log("Erro no login:", data.message);
