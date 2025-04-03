@@ -30,9 +30,11 @@ async function login() {
         if(data["error"]){
            create_modal(data["message"])
         }
+
         if (data.success) {
-            const jwt = localStorage.setItem("jwt_login", data.jwt)
-            window.location.href = "../home/home.html";
+          localStorage.setItem("user_id",data.jwt[1].user_id)
+          localStorage.setItem("jwt", data.jwt[0])
+          window.location.href = "../home/home.html";
         } else {
             console.log("Erro no login:", data.message);
         }
