@@ -2,7 +2,6 @@
 #header{
     background-color: #1c1a1a;
     width: 100vw;
-    position: fixed;
     display: flex;
     justify-content: center;
 }
@@ -28,4 +27,24 @@ body{
     height: 100vh;
     background-color: #1c1a1a;
     margin: 0;
+}
+main{
+    display: flex;
+    flex-direction: column;
+}
+#post-container{
+    display: flex;
+    justify-content: center;
+}
+.post{
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 5px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+}
+i{
+    cursor: pointer;
 }
