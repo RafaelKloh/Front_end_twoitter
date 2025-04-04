@@ -76,7 +76,7 @@ function render_posts(posts) {
 
     post_container.appendChild(div);
 
-  const like = document.querySelector(".like-icon")
+    const like = document.querySelector(".like-icon")
   const comment = document.querySelector(".comment-icon")
   const share = document.querySelector(".share-icon")
   const profile = document.querySelector(".profile_icon")
@@ -134,6 +134,7 @@ function render_posts(posts) {
   profile.addEventListener("click", () => {
     console.log("clicou no perfil")
   })
+  });
 }
 
 function scroll_event() {
