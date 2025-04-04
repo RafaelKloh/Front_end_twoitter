@@ -56,3 +56,9 @@ i{
     padding: 5px;
     margin-inline: 5px;
 }
+
+.profile_icon{
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+}
