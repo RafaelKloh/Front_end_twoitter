@@ -49,3 +49,10 @@ main{
 i{
     cursor: pointer;
 }
+.div_profile{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px;
+    margin-inline: 5px;
+}

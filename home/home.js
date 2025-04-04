@@ -60,7 +60,7 @@ function render_posts(posts) {
 
       console.log(profile_picture)
     div.innerHTML = `
-      <div>
+      <div class="div_profile">
         <i><img class="profile_icon" src="${profile_picture}" alt="user${userId}"></i>
         <p id='User${userId}'>${userName}</p>
       </div>
