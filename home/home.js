@@ -48,11 +48,23 @@ function render_posts(posts) {
     let div = document.createElement("div");
     div.classList.add("post");
 
+    console.log(post)
+    let userName = post.name
+    let userId = post.user_id
+    let profile_picture = post.profile_picture_url
+      ? `http://localhost/Back_end_twoitter/public/uploads/profile_pictures/${post.profile_picture_url}`
+      : null;
     let image_url = post.image_post
       ? `http://localhost/Back_end_twoitter/public/uploads/profile_pictures/${post.image_post}`
       : null;
 
+      console.log(profile_picture)
     div.innerHTML = `
+      <div>
+        <i><img class="profile_icon" src="${profile_picture}" alt="user${userId}"></i>
+        <p id='User${userId}'>${userName}</p>
+      </div>
+      
       ${image_url ? `<img src="${image_url}" alt="Post Image" style="max-width: 100%; height: auto;">` : ""}
       <div>
       <i><img class="like-icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWhlYXJ0LWljb24gbHVjaWRlLWhlYXJ0Ij48cGF0aCBkPSJNMTkgMTRjMS40OS0xLjQ2IDMtMy4yMSAzLTUuNUE1LjUgNS41IDAgMCAwIDE2LjUgM2MtMS43NiAwLTMgLjUtNC41IDItMS41LTEuNS0yLjc0LTItNC41LTJBNS41IDUuNSAwIDAgMCAyIDguNWMwIDIuMyAxLjUgNC4wNSAzIDUuNWw3IDdaIi8+PC9zdmc+" alt="like"></i>
@@ -64,6 +76,25 @@ function render_posts(posts) {
 
     post_container.appendChild(div);
   });
+
+  //function to validate click in post's icons, such as like icon
+  const like = document.querySelector(".like-icon")
+  const comment = document.querySelector(".comment-icon")
+  const share = document.querySelector(".share-icon")
+  const profile = document.querySelector(".profile_icon")
+
+  like.addEventListener("click", () => {
+    console.log("like like")
+  })
+  comment.addEventListener("click", () => {
+    console.log("comentarios")
+  })
+  share.addEventListener("click", () => {
+    console.log("compartilhei com seu")
+  })
+  profile.addEventListener("click", () => {
+    console.log("clicou no perfil")
+  })
 }
 
 function scroll_event() {
@@ -74,5 +105,3 @@ function scroll_event() {
 
 window.addEventListener("scroll", scroll_event);
 load_posts();
-
-//function to validate click in post's icons, such as like icon
