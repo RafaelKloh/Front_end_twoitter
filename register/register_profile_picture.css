@@ -1,0 +1,20 @@
+body{
+    margin: 0;
+    background-color: #0000;
+}
+main{
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+input{
+    padding: 4px;
+    border-radius: 16px;
+    background-color: #fff;
+}
+button{
+    padding: 4px;
+    border-radius: 16px;
+    background-color: #fff;
+}

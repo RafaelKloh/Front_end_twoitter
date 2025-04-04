@@ -5,21 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../public/global_style.css">
+    <link rel="stylesheet" href="register_profile_picture.css">
 </head>
 <body>
-    <h2>Upload Your Profile Picture And Add Your Bio</h2>
-    <form id="upload_form">
-        <input type="file" name="profile_picture" id="profile_picture" accept="image/*">
-        <br>
-        <label>Bio</label>
-        <br>
-        <input type="text" id="bio" name="bio">
-        <button type="submit">Enter</button>
-    </form>
-    <form id="jump_form">
-        <label>If you do not want to enter any of this information click here</label>
-        <button type="submit">Jump</button>
-    </form>
+    <header>
+        <h2>Upload Your Profile Picture And Add Your Bio</h2>
+    </header>
+    <main>
+        <form id="upload_form">
+            <input type="file" name="profile_picture" id="profile_picture" accept="image/*">
+            <br>
+            <label>Bio</label>
+            <br>
+            <input type="text" id="bio" name="bio">
+            <button type="submit">Enter</button>
+        </form>
+        <form id="jump_form">
+            <label>If you do not want to enter any of this information click here</label>
+            <button type="submit">Jump</button>
+        </form>
+    </main>
 </body>
 <script type="module" src="./profile_picture.js"></script>
 </html>
