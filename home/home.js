@@ -6,6 +6,7 @@ if (!jwt) {
   create_modal("Do you need to stay logged in to do this.");
   window.location.href = "../login/login.html";
 }
+console.log(jwt)
 
 let limit = 10;
 let offset = 0;
