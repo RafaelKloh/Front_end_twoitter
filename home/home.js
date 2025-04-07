@@ -76,16 +76,55 @@ function render_posts(posts) {
       `;
 
     post_container.appendChild(div);
-  });
 
-  //function to validate click in post's icons, such as like icon
-  const like = document.querySelector(".like-icon")
+    const like = document.querySelector(".like-icon")
   const comment = document.querySelector(".comment-icon")
   const share = document.querySelector(".share-icon")
   const profile = document.querySelector(".profile_icon")
 
   like.addEventListener("click", () => {
-    console.log("like like")
+    const user_id = localStorage.getItem("user_id")
+    const post_id = post.post_id
+    let date = new Date()
+    let day = date.getDate()
+    let month = date.getMonth()
+    let year = date.getFullYear()
+    if (day < 10) {
+      day = `0${day}`
+    }
+    if (month < 10) {
+      month = `0${month}`
+    }
+    let full_date = year + '-' + month + '-' + day
+    const user_data = {
+      post_id, user_id, full_date
+    }
+    
+    console.log(user_data)
+    try {
+      const datas = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "User-Agent": "insomnia/10.3.1",
+        },
+        body: JSON.stringify(user_data),
+      };
+      const response = fetch(
+        "http://localhost/Back_end_twoitter/post/register_like",
+        datas
+      );
+      const data = response.json();
+  
+      if (data.success && data.jwt.length > 0) {
+        render_posts(data.jwt);
+        offset += limit;
+      } else {
+        window.removeEventListener("scroll", scroll_event);
+      }
+    } catch (error) {
+      create_modal("Requisition error: " + error);
+    }
   })
   comment.addEventListener("click", () => {
     console.log("comentarios")
@@ -96,6 +135,7 @@ function render_posts(posts) {
   profile.addEventListener("click", () => {
     console.log("clicou no perfil")
   })
+  });
 }
 
 function scroll_event() {
