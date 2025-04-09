@@ -1,5 +1,48 @@
 import { create_modal } from "../public/modals/global_modal.js";
 
+
+
+let btn_photo = document.querySelector('#btn_photo')
+btn_photo.addEventListener('click', () => {
+    var video = document.querySelector('video')
+    navigator.mediaDevices.getUserMedia({video:true})
+    .then(stream =>{
+    video.srcObject = stream
+    video.play()
+    })
+    .catch(error =>{
+        console.log(error)
+    })
+})
+
+const capture_button = document.createElement('button');
+capture_button.textContent = "Capture";
+document.body.appendChild(capture_button);
+
+capture_button.addEventListener('click', () => {
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    canvas.toBlob(blob => {
+        const file = new File([blob], "profile_image.png", { type: "image/png" });
+
+        // Simula o input file com o arquivo criado
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(file);
+
+        const input = document.getElementById('profile_picture');
+        input.files = dataTransfer.files;
+
+        console.log("Imagem capturada e inserida no input");
+    }, 'image/png');
+});
+
+
 document.getElementById("upload_form").addEventListener("submit", async function (event) {
     event.preventDefault();
     const user_id = localStorage.getItem("user_id");

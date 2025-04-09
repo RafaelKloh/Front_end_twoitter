@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,17 @@
     <link rel="stylesheet" href="../public/global_style.css">
     <link rel="stylesheet" href="register_profile_picture.css">
 </head>
+
 <body>
     <header>
         <h2>Upload Your Profile Picture And Add Your Bio</h2>
     </header>
     <main>
+        <p>Take a photo with the camera</p>
+        <video id="video" autoplay style="display: none;" width="320" height="240"></video>
+        <canvas id="canvas" style="display: none;"></canvas>
+
+        <button id="btn_photo">Camera</button>
         <form id="upload_form">
             <input type="file" name="profile_picture" id="profile_picture" accept="image/*">
             <br>
@@ -27,4 +34,5 @@
     </main>
 </body>
 <script type="module" src="./profile_picture.js"></script>
+
 </html>
