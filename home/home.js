@@ -7,7 +7,7 @@ if (!jwt) {
   window.location.href = "../login/login.html";
 }
 
-let limit = 1;
+let limit = 10;
 let offset = 0;
 let is_loading = false;
 
@@ -27,13 +27,14 @@ async function load_posts() {
       }
     );
     const data = await response.json();
-
-    if (data.success && data.jwt.length > 0) {
+    console.log(data)
+    if (Array.isArray(data.jwt) && data.jwt.length > 0) {
       render_posts(data.jwt);
       offset += limit;
     } else {
-      window.removeEventListener("scroll", scroll_event);
+      window.removeEventListener("scroll", scroll_event_handler);
     }
+    
   } catch (error) {
     create_modal("Requisition error: " + error);
   }
@@ -45,13 +46,13 @@ function render_posts(posts) {
   let post_container = document.getElementById("post_container");
 
   posts.forEach((post) => {
-    console.log(posts)
+
     let div = document.createElement("div");
     div.classList.add("post");
     let user_name = post.name
     let user_id = post.user_id
 
-
+    console.log(post)
     let profile_picture = post.profile_picture_url
       ? `http://localhost/Back_end_twoitter/public/uploads/profile_pictures/${post.profile_picture_url}`
       : null;
@@ -141,12 +142,13 @@ function render_posts(posts) {
   });
 }
 
-function scroll_event() {
+function scroll_event_handler() {
   const distance_to_bottom = document.documentElement.scrollHeight - window.innerHeight - window.scrollY
   if(distance_to_bottom < 200){
+    console.log("ai papai")
     load_posts()
   }
 }
 
-window.addEventListener("scroll", scroll_event);
+window.addEventListener("scroll", scroll_event_handler);
 load_posts();

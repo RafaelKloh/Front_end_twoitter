@@ -4,17 +4,23 @@
     box-sizing: border-box;
   }
   
+  html{
+    height: 100%;
+  
+  }
   body {
     font-family: Arial, sans-serif;
     display: flex;
     background-color: #f4f4f4;
     min-height: 100vh;
+    height: 100%;
+  overflow-y: auto;
   }
   
 
   #side_bar {
     width: 250px;
-    background-color: #1d1d1d;
+    background-color: #637777;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -138,5 +144,16 @@
     border-radius: 10px;
     padding: 1rem;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    min-height: 100vh;
   }
   
+
+  .profile_icon{
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+  }
+
+  .div_profile{
+    display: flex
+}
