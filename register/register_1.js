@@ -6,7 +6,6 @@ const form = document.getElementById("form_register_1");
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  // Pegamos os valores ATUALIZADOS ao enviar o formulário
   let name = document.getElementById("name").value.trim();
   let email = document.getElementById("email").value.trim();
   let password = document.getElementById("password").value;
@@ -15,30 +14,24 @@ form.addEventListener("submit", async (event) => {
   let birthday = document.getElementById("birthday").value;
   let terms_of_use = document.getElementById("terms_of_use").checked;
 
-  // Pegamos a data de hoje corretamente
   let data = new Date();
   let day = data.getDate().toString().padStart(2, "0");
-  let month = (data.getMonth() + 1).toString().padStart(2, "0"); // getMonth() começa em 0
+  let month = (data.getMonth() + 1).toString().padStart(2, "0"); 
   let year = data.getFullYear();
   const date = `${year}-${month}-${day}`;
 
-  // 🔴 Validação: senhas diferentes
   if (password !== confirm_password) {
     create_modal("Passwords need to be the same");
     return;
   }
 
-  // 🔴 Validação: aceite dos termos de uso
   if (!terms_of_use) {
     create_modal("You need to agree with our terms of use to continue");
     return;
   }
-
-  // Chama a função register com os valores atualizados
   register(name, email, password, sex, birthday, date);
 });
 
-// Função para cadastrar o usuário
 async function register(name, email, password, sex, birthday, date) {
   try {
     const user_data = {
