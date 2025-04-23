@@ -27,7 +27,7 @@ async function load_posts() {
       }
     );
     const data = await response.json();
-    console.log(data)
+    console.log(data);
     if (Array.isArray(data.jwt) && data.jwt.length > 0) {
       render_posts(data.jwt);
       offset += limit;
@@ -49,10 +49,10 @@ function render_posts(posts) {
 
     let div = document.createElement("div");
     div.classList.add("post");
-    let user_name = post.name
-    let user_id = post.user_id
+    let user_name = post.name;
+    let user_id = post.user_id;
 
-    console.log(post)
+    console.log(post);
     let profile_picture = post.profile_picture_url
       ? `http://localhost/Back_end_twoitter/public/uploads/profile_pictures/${post.profile_picture_url}`
       : null;
@@ -67,86 +67,102 @@ function render_posts(posts) {
       
       ${image_url ? `<img src="${image_url}" alt="Post Image" style="max-width: 100%; height: auto;">` : ""}
       <div>
-      <i><img class="like-icon" id="like_id_${post.post_id}" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWhlYXJ0LWljb24gbHVjaWRlLWhlYXJ0Ij48cGF0aCBkPSJNMTkgMTRjMS40OS0xLjQ2IDMtMy4yMSAzLTUuNUE1LjUgNS41IDAgMCAwIDE2LjUgM2MtMS43NiAwLTMgLjUtNC41IDItMS41LTEuNS0yLjc0LTItNC41LTJBNS41IDUuNSAwIDAgMCAyIDguNWMwIDIuMyAxLjUgNC4wNSAzIDUuNWw3IDdaIi8+PC9zdmc+" alt="like"></i>
-      <i><img class="comment-icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLW1lc3NhZ2UtY2lyY2xlLWljb24gbHVjaWRlLW1lc3NhZ2UtY2lyY2xlIj48cGF0aCBkPSJNNy45IDIwQTkgOSAwIDEgMCA0IDE2LjFMMiAyMloiLz48L3N2Zz4=" alt="Comment"></i>
-      <i><img class="share-icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXNlbmQtaWNvbiBsdWNpZGUtc2VuZCI+PHBhdGggZD0iTTE0LjUzNiAyMS42ODZhLjUuNSAwIDAgMCAuOTM3LS4wMjRsNi41LTE5YS40OTYuNDk2IDAgMCAwLS42MzUtLjYzNWwtMTkgNi41YS41LjUgMCAwIDAtLjAyNC45MzdsNy45MyAzLjE4YTIgMiAwIDAgMSAxLjExMiAxLjExeiIvPjxwYXRoIGQ9Im0yMS44NTQgMi4xNDctMTAuOTQgMTAuOTM5Ii8+PC9zdmc+" alt="share"></i>
-      </div>
+    <i class="like-icon" id="like_id_${post.post_id}" data-liked="false">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-transparent stroke-current" viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+    </i>
+
+    <i class="comment_icon" id="comment_icon_${post.post_id}">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
+        </svg>
+    </i>
+
+    <i class="share_icon" id="share_icon_${post.post_id}">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+        </svg>
+    </i>
+</div>
+
       <p>${post.text_post || "Sem conteúdo"}</p>
-      `;
+    `;
 
     post_container.appendChild(div);
 
-    const like = div.querySelector(`#like_id_${post.post_id}`)
-  const comment = div.querySelector(".comment-icon")
-  const share = div.querySelector(".share-icon")
-  const profile = div.querySelector(".profile_icon")
+    const like = div.querySelector(`#like_id_${post.post_id}`);
+    const comment = document.querySelector(".comment_icon");
+    const share = document.querySelector(".share_icon");
+    const profile = div.querySelector(".profile_icon");
 
-  like.addEventListener("click", async () => {
-    const user_id = localStorage.getItem("user_id")
-    let user_post_liked_id = post.user_id
-    const post_id = post.post_id
-    let date = new Date()
-    let day = date.getDate()
-    let month = date.getMonth() + 1
-    let year = date.getFullYear()
-    if (day < 10) {
-      day = `0${day}`
-    }
-    if (month < 10) {
-      month = `0${month}`
-    }
-    let liked_at = year + '-' + month + '-' + day
-    const user_data = {
-      post_id,
-      liked_at,
-      user_post_liked_id
-    }
-    
-    try {
-      const datas = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${jwt}`,
-        },
-        body: JSON.stringify(user_data),
+    like.addEventListener("click", async () => {
+      const user_id = localStorage.getItem("user_id");
+      let user_post_liked_id = post.user_id;
+      const post_id = post.post_id;
+      let date = new Date();
+      let day = date.getDate();
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();
+      if (day < 10) {
+        day = `0${day}`;
+      }
+      if (month < 10) {
+        month = `0${month}`;
+      }
+      let liked_at = year + '-' + month + '-' + day;
+      const user_data = {
+        post_id,
+        liked_at,
+        user_post_liked_id,
       };
-      const response = await fetch(
-        "http://localhost/Back_end_twoitter/post/register_like",
-        datas
-      );
-      const data = await response.json();
-      console.log(data.data)
-      if (data.success && data.data == "Like registered successfully!") {
-        console.log(data.data)
-        like.style.backgroundColor = "#ff0000";
+      
+      try {
+        const datas = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwt}`,
+          },
+          body: JSON.stringify(user_data),
+        };
+        const response = await fetch(
+          "http://localhost/Back_end_twoitter/post/register_like",
+          datas
+        );
+        const data = await response.json();
+        console.log(data.data);
+        if (data.success && data.data == "Like registered successfully!") {
+          console.log(data.data);
+          like.classList.add("liked");
+        }
+        if (data.success && data.data == "like deleted successfuly!") {
+          like.classList.remove("liked");
+        }
+      } catch (error) {
+        create_modal("Requisition error: " + error);
       }
-      if(data.success && data.data == "like deleted successfuly!"){
-        like.style.backgroundColor = "transparent"
-      } else {
-        window.removeEventListener("scroll", scroll_event);
-      }
-    } catch (error) {
-      create_modal("Requisition error: " + error);
-    }
-  })
-  comment.addEventListener("click", () => {
-    console.log("comentarios")
-  })
-  share.addEventListener("click", () => {
-    console.log("compartilhei com seu")
-  })
-  profile.addEventListener("click", () => {
-    console.log("clicou no perfil")
-  })
+    });
+
+    comment.addEventListener("click", () => {
+      console.log("comentarios");
+    });
+
+    share.addEventListener("click", () => {
+      console.log("compartilhei com seu");
+    });
+
+    profile.addEventListener("click", () => {
+      console.log("clicou no perfil");
+    });
   });
 }
 
 function scroll_event_handler() {
-  const distance_to_bottom = document.documentElement.scrollHeight - window.innerHeight - window.scrollY
-  if(distance_to_bottom < 200){
-    console.log("ai papai")
-    load_posts()
+  const distance_to_bottom = document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
+  if (distance_to_bottom < 200) {
+    console.log("ai papai");
+    load_posts();
   }
 }
 

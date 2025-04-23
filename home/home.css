@@ -157,3 +157,15 @@
   .div_profile{
     display: flex
 }
+.like-icon svg{
+  fill: none;
+}
+
+.liked svg {
+  fill: red; 
+}
+
+svg{
+  width: 24px;
+}
+
