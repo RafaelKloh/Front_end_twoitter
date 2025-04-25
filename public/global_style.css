@@ -28,6 +28,24 @@
     text-align: center;
 }
 
+#option_modal{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+#option_modal button{
+    width: 100%;
+    padding: 10px;
+    background-color: #3498db;
+    color: #ecf0f1;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
 #modal_button{
     width: 100%;
     padding: 10px;
