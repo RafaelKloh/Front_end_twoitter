@@ -263,7 +263,6 @@ async function fetch_posts_by_search(search) {
   if (is_loading) return;
   is_loading = true;
 
-
   try {
     const post_data = { search: search };
     const datas = {
@@ -287,9 +286,10 @@ async function fetch_posts_by_search(search) {
       return;
     }
 
-    if (data.jwt ) {
+    if (data.jwt) {
       let post_container = document.getElementById("post_container");
       let filter = document.getElementById("filter");
+     
       if (offset === 0) post_container.innerHTML = "";
       post_container.style.display = "block";
       filter.style.display = "flex";
@@ -305,10 +305,12 @@ async function fetch_posts_by_search(search) {
 
 function render_posts_search(posts) {
   let post_container = document.getElementById("post_container");
-
+  
   posts.forEach((post) => {
     let div = document.createElement("div");
     div.classList.add("post");
+
+    
 
     let user_name = post.name;
     let user_id = post.user_id;
@@ -320,6 +322,7 @@ function render_posts_search(posts) {
       ? `http://localhost/Back_end_twoitter/public/uploads/image_posts/${post.image_post}`
       : null;
 
+    div.innerHTML = ''
     div.innerHTML = `
       <div class="div_profile">
         <i><img class="profile_icon" src="${profile_picture}" alt="user${user_id}"></i>
@@ -377,12 +380,13 @@ function render_posts_search(posts) {
 }
 
 function call_fetch_post() {
-  const btn = document.getElementById("search_button");
+  const btn = document.getElementById("search_posts_btn");
   btn.addEventListener("click", () => {
     const search = document.getElementById("input-search").value;
     search_mode = "post";
     limit = 10;
     offset = 0;
+    
     fetch_posts_by_search(search);
   });
 }
@@ -397,7 +401,13 @@ search_user_btn.addEventListener('click', async() => {
 
 const search_post_btn = document.getElementById("search_posts_btn")
 search_post_btn.addEventListener('click', async () =>{
-  load_posts();
+  search_mode = "post"
+  console.log(search_mode)
+  // Array.from(div_users).forEach(element=>{
+  //   console.log(element)
+  //   element.style.display = "none"
+  //   element.innerHTML = ""
+  // })
 })
 
 
@@ -420,7 +430,8 @@ function scroll_event_handler() {
       const search = document.getElementById("input-search").value;
       fetch_users_by_search(search);
     }
-    else if (search_mode == "post"){
+    else if (search_mode === "post"){
+      console.log(search_mode)
       const search = document.getElementById("input-search").value;
       fetch_posts_by_search(search);
     }
@@ -431,6 +442,8 @@ window.addEventListener("scroll", scroll_event_handler);
 
 
 call_fetch_user();
+call_fetch_post()
+
 if (search_mode === "") {
   load_posts();
 }
